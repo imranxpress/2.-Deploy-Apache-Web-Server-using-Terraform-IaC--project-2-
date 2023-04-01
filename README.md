@@ -32,13 +32,21 @@ Goal of this project to write Terraform IaC to deploy Apache Webserver in AWS cl
 ## Deployment
 
    1. Write Terraform IaC to deploy below resources in the VPC that was created in the Pre-Requisites step and keep the state file in S3 backend with state locking support.
+        
         a. Create  IAM Role granting PUT/GET  access to S3 Bucket and Session Manager access.
+        
         b. Create Launch Configuration with userdata script to pull the index.html file from S3 and attach IAM role and configure the webserver (May run Ansible Playbook to configure webserver)
+        
         c. Create Auto Scaling Group with Min:1 Max: 1 Des: 1  in private subnet
+        
         d. Create Target Group with health checks to and attach with Auto Scaling Group
+        
         e. Create Application Load balancer in public subnet and configure Listener Port to route the traffic to the Target Group
+        
         f. Create alias record in Hosted Zone to route the traffic to the Load balancer from public network.
+        
         g. Create Cloudwatch Alarms to send notification when ASG state changes.
+        
         h. Create Scaling Policies to scale out/Scale In when average CPU utilization is > 80%
         
     2 Deploy Terraform IaC to create the resources
